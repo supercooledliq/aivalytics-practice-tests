@@ -1,0 +1,415 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Practice Tests | PlacementPrep</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "error": "#ba1a1a",
+                    "secondary": "#7d5700",
+                    "on-tertiary-fixed": "#1d1c15",
+                    "inverse-primary": "#b4c7ec",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed-variant": "#5f4100",
+                    "surface-tint": "#4c5f7f",
+                    "surface-dim": "#dadada",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1a1c1c",
+                    "primary-container": "#071d3a",
+                    "on-primary-fixed": "#051b38",
+                    "on-secondary-container": "#755100",
+                    "background": "#f9f9f9",
+                    "surface-container": "#eeeeee",
+                    "secondary-fixed-dim": "#f5bd58",
+                    "surface": "#f9f9f9",
+                    "on-surface": "#1a1c1c",
+                    "primary-fixed-dim": "#b4c7ec",
+                    "inverse-surface": "#2f3131",
+                    "on-surface-variant": "#44474d",
+                    "inverse-on-surface": "#f0f1f1",
+                    "on-secondary-fixed": "#271900",
+                    "surface-container-high": "#e8e8e8",
+                    "primary": "#00030c",
+                    "on-tertiary": "#ffffff",
+                    "surface-container-low": "#f3f3f4",
+                    "secondary-container": "#ffc55f",
+                    "on-secondary": "#ffffff",
+                    "on-primary-container": "#7386a8",
+                    "tertiary-container": "#1e1d16",
+                    "on-primary-fixed-variant": "#354766",
+                    "on-error": "#ffffff",
+                    "tertiary": "#030201",
+                    "error-container": "#ffdad6",
+                    "primary-fixed": "#d6e3ff",
+                    "surface-bright": "#f9f9f9",
+                    "on-tertiary-container": "#88857b",
+                    "surface-variant": "#e2e2e2",
+                    "outline-variant": "#c4c6ce",
+                    "outline": "#74777e",
+                    "tertiary-fixed-dim": "#cac6bb",
+                    "on-tertiary-fixed-variant": "#49473e",
+                    "secondary-fixed": "#ffdeaa",
+                    "tertiary-fixed": "#e7e2d6"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack_sm": "8px",
+                    "stack_md": "16px",
+                    "header_height": "72px",
+                    "gutter": "24px",
+                    "stack_lg": "32px",
+                    "container_max_width": "1280px",
+                    "margin_mobile": "16px",
+                    "sidebar_width": "280px"
+            },
+            "fontFamily": {
+                    "code-xs": ["Inter"],
+                    "body-md": ["Inter"],
+                    "display-lg": ["Work Sans"],
+                    "headline-lg": ["Work Sans"],
+                    "body-lg": ["Inter"],
+                    "headline-lg-mobile": ["Work Sans"],
+                    "label-sm": ["Inter"],
+                    "title-md": ["Work Sans"]
+            },
+            "fontSize": {
+                    "code-xs": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #F8F3E7; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,3,12,0.1); border-radius: 10px; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased bg-[#F8F3E7]">
+<!-- Side Navigation Bar -->
+<aside class="fixed left-0 top-0 h-screen w-sidebar_width bg-primary-container flex flex-col py-stack_lg z-50 overflow-y-auto">
+<div class="px-6 mb-stack_lg">
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary-container">PlacementPrep</h1>
+<p class="font-label-sm text-label-sm text-on-primary-container">Elite Career Portal</p>
+</div>
+<nav class="flex-1 flex flex-col">
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 bg-white/10 text-secondary-container border-l-4 border-secondary-container py-3 px-6 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">assignment</span>
+<span class="font-body-md">Tests</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">business_center</span>
+<span class="font-body-md">Company Simulation</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="font-body-md">AI Interview</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">code</span>
+<span class="font-body-md">Coding Practice</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">emoji_events</span>
+<span class="font-body-md">Contests</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-body-md">Results</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-body-md">Profile</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-secondary-container text-primary-container font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+            Upgrade to Pro
+        </button>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="fixed top-0 right-0 left-sidebar_width h-header_height bg-white border-b border-[#E5E1D5] flex justify-between items-center px-gutter z-40">
+<div class="flex items-center gap-4">
+<h2 class="font-title-md text-title-md font-bold text-primary">Practice Tests</h2>
+<div class="h-6 w-px bg-outline-variant mx-2"></div>
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 w-96 focus:ring-2 focus:ring-primary-container text-body-md" placeholder="Search tests, topics, or companies..." type="text">
+</div>
+</div>
+<div class="flex items-center gap-stack_md">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">settings</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-outline-variant">
+<div class="text-right">
+<p class="font-label-sm text-primary font-bold">Alex Carter</p>
+<p class="text-[12px] text-on-surface-variant">Gold Member</p>
+</div>
+<img alt="User Profile" class="w-10 h-10 rounded-full border-2 border-secondary-container object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCU8-KTVG-78kHBJ7PF9mf36FPRPbq1-twnhCa2I_gS5_OVm9bdDCASSvcWAoDfKGr8DYcxRzRW2N17_Vi9NRwfA-F_tgLUOaPtaGEHjiHhy9xN5gLB0HcfiIG3EGVgsOBEDYyVmu7RxT18lH1_yIADXbGIyk7OaAq0jeVCifrVFHFqJWbHUuIjDzRwys3UrJSXNBNPhSxgoMTITPXmTjrAsEH2sNi5e-m6OgpmUf2Y58z-iZSLPMbgZIya6vghOVdey9TMxgi3k7W2">
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="ml-sidebar_width pt-header_height p-gutter min-h-screen">
+<div class="max-w-container_max_width mx-auto">
+<!-- Page Title -->
+<div class="mb-stack_lg">
+<h2 class="font-headline-lg text-headline-lg font-bold text-primary">Practice Tests</h2>
+<p class="text-on-surface-variant font-body-md mt-1">Hone your skills with curated assessments from industry experts.</p>
+</div>
+<!-- Tab Navigation -->
+<div class="flex items-center gap-8 border-b border-[#E5E1D5] mb-stack_lg">
+<button class="pb-4 px-2 font-label-sm text-label-sm font-bold text-primary border-b-2 border-secondary-container relative">
+                Subject Wise
+            </button>
+<button class="pb-4 px-2 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">
+                Topic Wise
+            </button>
+<button class="pb-4 px-2 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">
+                Subtopic Wise
+            </button>
+<button class="pb-4 px-2 font-label-sm text-label-sm text-on-surface-variant hover:text-primary transition-colors">
+                Assigned Tests
+            </button>
+</div>
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Left Content: Filters & Grid -->
+<div class="col-span-12 lg:col-span-9 space-y-stack_lg">
+<!-- Search & Filter Bar -->
+<div class="bg-white p-stack_md rounded-xl border border-[#E5E1D5] flex flex-wrap gap-4 items-center shadow-sm">
+<div class="flex-1 min-w-[240px] relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">filter_list</span>
+<input class="w-full pl-10 pr-4 py-2 border border-outline-variant rounded-lg text-label-sm focus:ring-primary-container focus:border-primary-container" placeholder="Search by title..." type="text">
+</div>
+<select class="bg-white border border-outline-variant rounded-lg text-label-sm px-4 py-2 focus:ring-primary-container cursor-pointer">
+<option>All Subjects</option>
+<option>Computer Science</option>
+<option>Mathematics</option>
+<option>Aptitude</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-lg text-label-sm px-4 py-2 focus:ring-primary-container cursor-pointer">
+<option>Difficulty</option>
+<option>Easy</option>
+<option>Medium</option>
+<option>Hard</option>
+</select>
+<select class="bg-white border border-outline-variant rounded-lg text-label-sm px-4 py-2 focus:ring-primary-container cursor-pointer">
+<option>Status</option>
+<option>Not Started</option>
+<option>In Progress</option>
+<option>Completed</option>
+</select>
+</div>
+<!-- Test Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Card 1 -->
+<div class="bg-white rounded-xl border border-[#E5E1D5] hover:border-[#D1CCBC] hover:shadow-sm transition-all group overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-surface-container-low text-[11px] font-bold uppercase tracking-wider rounded-full text-on-surface-variant">Computer Science</span>
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold rounded-full">Not Started</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-primary mb-2">Data Structures &amp; Algorithms</h3>
+<div class="flex items-center gap-4 text-on-surface-variant text-label-sm mb-6">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+<span>45 Qs</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>60 Mins</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+<span>Medium</span>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 bg-surface-container-low/30 border-t border-[#E5E1D5]">
+<button class="w-full bg-primary-container text-secondary-container py-3 rounded-lg font-bold hover:brightness-110 transition-all active:scale-95">Start Test</button>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-white rounded-xl border border-[#E5E1D5] hover:border-[#D1CCBC] hover:shadow-sm transition-all group overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-surface-container-low text-[11px] font-bold uppercase tracking-wider rounded-full text-on-surface-variant">Systems</span>
+<span class="px-3 py-1 bg-secondary-container text-primary-container text-[11px] font-bold rounded-full">In Progress</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-primary mb-2">Operating Systems Fundamentals</h3>
+<div class="flex items-center gap-4 text-on-surface-variant text-label-sm mb-6">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+<span>30 Qs</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>45 Mins</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+<span>Hard</span>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 bg-surface-container-low/30 border-t border-[#E5E1D5]">
+<button class="w-full bg-white border-2 border-primary-container text-primary-container py-3 rounded-lg font-bold hover:bg-primary-container hover:text-white transition-all active:scale-95">Resume Test</button>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-white rounded-xl border border-[#E5E1D5] hover:border-[#D1CCBC] hover:shadow-sm transition-all group overflow-hidden flex flex-col">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<span class="px-3 py-1 bg-surface-container-low text-[11px] font-bold uppercase tracking-wider rounded-full text-on-surface-variant">Mathematics</span>
+<span class="px-3 py-1 bg-secondary-container/20 text-on-secondary-container text-[11px] font-bold rounded-full">Not Started</span>
+</div>
+<h3 class="font-title-md text-title-md font-bold text-primary mb-2">Probability &amp; Statistics</h3>
+<div class="flex items-center gap-4 text-on-surface-variant text-label-sm mb-6">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">quiz</span>
+<span>25 Qs</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span>40 Mins</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">bar_chart</span>
+<span>Medium</span>
+</div>
+</div>
+</div>
+<div class="mt-auto p-6 bg-surface-container-low/30 border-t border-[#E5E1D5]">
+<button class="w-full bg-primary-container text-secondary-container py-3 rounded-lg font-bold hover:brightness-110 transition-all active:scale-95">Start Test</button>
+</div>
+</div>
+<!-- Card 4 (Locked) -->
+<div class="bg-white rounded-xl border-dashed border-2 border-[#E5E1D5] opacity-60 overflow-hidden flex flex-col">
+<div class="p-stack_md flex flex-col items-center justify-center h-full text-center py-12">
+<span class="material-symbols-outlined text-[48px] text-outline mb-4">lock</span>
+<h3 class="font-title-md text-title-md font-bold text-on-surface-variant">Premium Tests</h3>
+<p class="text-label-sm mb-6">Unlock 50+ advanced company mock tests</p>
+<button class="px-6 py-2 bg-secondary-container text-primary-container rounded-lg font-bold hover:brightness-105">Upgrade Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Sidebar -->
+<div class="col-span-12 lg:col-span-3 space-y-stack_lg">
+<!-- Recommended For You -->
+<section class="bg-white p-6 rounded-xl border border-[#E5E1D5] shadow-sm">
+<h4 class="font-title-md text-title-md font-bold text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        Recommended
+                    </h4>
+<div class="space-y-4">
+<div class="p-4 border border-[#E5E1D5] rounded-xl hover:border-secondary-container/30 hover:bg-surface transition-all cursor-pointer">
+<p class="text-[10px] font-bold text-secondary uppercase mb-1">High Impact</p>
+<p class="font-body-md font-bold text-primary">Trie Data Structures</p>
+<p class="text-xs text-on-surface-variant mt-1">Commonly asked in Google &amp; Meta</p>
+</div>
+<div class="p-4 border border-[#E5E1D5] rounded-xl hover:border-secondary-container/30 hover:bg-surface transition-all cursor-pointer">
+<p class="text-[10px] font-bold text-secondary uppercase mb-1">Skill Gap</p>
+<p class="font-body-md font-bold text-primary">Dynamic Programming I</p>
+<p class="text-xs text-on-surface-variant mt-1">Improve your speed in hard Qs</p>
+</div>
+</div>
+</section>
+<!-- Targeted Weak Areas -->
+<section class="bg-primary-container text-white p-6 rounded-xl shadow-lg overflow-hidden relative">
+<div class="absolute -right-8 -top-8 w-24 h-24 bg-secondary-container/10 rounded-full blur-2xl"></div>
+<h4 class="font-title-md text-title-md font-bold mb-4 flex items-center gap-2 text-secondary-container">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">trending_down</span>
+                        Weak Areas
+                    </h4>
+<p class="text-xs text-on-primary-container opacity-60 mb-6 italic">Based on your last 3 attempts</p>
+<div class="space-y-6">
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="font-medium">Recursion</span>
+<span class="text-secondary-container font-bold">34% Accuracy</span>
+</div>
+<div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[34%]" style="background-color: #D9A441;"></div>
+</div>
+</div>
+<div>
+<div class="flex justify-between text-xs mb-2">
+<span class="font-medium">SQL Joins</span>
+<span class="text-secondary-container font-bold">48% Accuracy</span>
+</div>
+<div class="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-container w-[48%]" style="background-color: #D9A441;"></div>
+</div>
+</div>
+</div>
+<button class="mt-8 w-full py-2 border-2 border-secondary-container text-secondary-container rounded-lg text-xs font-bold hover:bg-secondary-container hover:text-primary-container transition-all">Generate Focused Test</button>
+</section>
+<!-- Quote/Ad Widget -->
+<div class="p-6 rounded-xl bg-secondary-container text-primary-container relative overflow-hidden group">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-[32px] opacity-20 block mb-2">format_quote</span>
+<p class="font-body-md italic leading-relaxed text-sm font-medium">
+                            "The expert in anything was once a beginner. Consistency is the only secret."
+                        </p>
+<p class="mt-4 text-[10px] font-extrabold uppercase opacity-80">— Mentor Daily Tip</p>
+</div>
+<span class="material-symbols-outlined absolute -bottom-4 -right-4 text-[100px] opacity-10 transition-transform group-hover:scale-110">lightbulb</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed bottom-gutter right-gutter w-14 h-14 bg-primary-container text-secondary-container rounded-full shadow-xl flex items-center justify-center hover:scale-110 active:scale-95 transition-transform group z-50">
+<span class="material-symbols-outlined text-[28px]">chat_bubble</span>
+<span class="absolute right-16 bg-primary-container text-white px-3 py-1 rounded text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">AI Study Buddy</span>
+</button>
+<script>
+    // Micro-interactions for card hovers to match dashboard feel
+    document.querySelectorAll('.bg-white.border').forEach(card => {
+        card.addEventListener('mouseenter', () => {
+            card.style.transform = 'translateY(-2px)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'translateY(0)';
+        });
+    });
+</script>
+</body></html>

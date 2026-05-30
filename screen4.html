@@ -1,0 +1,424 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Test Selection | PlacementPrep</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#7d5700",
+                        "surface-container": "#eeeeee",
+                        "on-primary": "#ffffff",
+                        "background": "#f9f9f9",
+                        "tertiary": "#030201",
+                        "outline": "#74777e",
+                        "tertiary-fixed": "#e7e2d6",
+                        "secondary-container": "#ffc55f",
+                        "surface-dim": "#dadada",
+                        "on-secondary": "#ffffff",
+                        "on-primary-container": "#7386a8",
+                        "on-tertiary-fixed": "#1d1c15",
+                        "outline-variant": "#c4c6ce",
+                        "on-secondary-container": "#755100",
+                        "secondary-fixed-dim": "#f5bd58",
+                        "on-error-container": "#93000a",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed-variant": "#354766",
+                        "on-secondary-fixed": "#271900",
+                        "inverse-primary": "#b4c7ec",
+                        "on-primary-fixed": "#051b38",
+                        "surface-bright": "#f9f9f9",
+                        "primary-fixed": "#d6e3ff",
+                        "on-tertiary-container": "#88857b",
+                        "surface-tint": "#4c5f7f",
+                        "primary-container": "#071d3a",
+                        "error-container": "#ffdad6",
+                        "surface-container-highest": "#e2e2e2",
+                        "surface-container-low": "#f3f3f4",
+                        "on-tertiary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#49473e",
+                        "inverse-on-surface": "#f0f1f1",
+                        "primary-fixed-dim": "#b4c7ec",
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "secondary-fixed": "#ffdeaa",
+                        "on-surface-variant": "#44474d",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#cac6bb",
+                        "surface": "#f9f9f9",
+                        "inverse-surface": "#2f3131",
+                        "surface-container-high": "#e8e8e8",
+                        "on-surface": "#1a1c1c",
+                        "primary": "#00030c",
+                        "surface-variant": "#e2e2e2",
+                        "tertiary-container": "#1e1d16",
+                        "on-background": "#1a1c1c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "stack_md": "16px",
+                        "stack_lg": "32px",
+                        "container_max_width": "1280px",
+                        "gutter": "24px",
+                        "sidebar_width": "280px",
+                        "margin_mobile": "16px",
+                        "stack_sm": "8px",
+                        "header_height": "72px"
+                    },
+                    "fontFamily": {
+                        "display-lg": ["Work Sans"],
+                        "code-xs": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Work Sans"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Work Sans"],
+                        "label-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #F8F3E7; /* Warm Cream Base */
+            font-family: 'Inter', sans-serif;
+        }
+        .font-work { font-family: 'Work Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .card-border { border: 1px solid #E5DEC8; }
+        .active-selection {
+            background-color: #FFFDF5;
+            border-color: #7d5700;
+            box-shadow: inset 4px 0 0 0 #7d5700;
+        }
+        /* Custom scrollbar for column lists */
+        .custom-scroll::-webkit-scrollbar { width: 4px; }
+        .custom-scroll::-webkit-scrollbar-track { background: transparent; }
+        .custom-scroll::-webkit-scrollbar-thumb { background: #E5DEC8; border-radius: 10px; }
+    </style>
+</head>
+<body class="text-on-surface"><aside class="fixed left-0 top-0 h-full w-[280px] bg-primary-container flex flex-col py-stack_lg z-50">
+<div class="px-6 mb-stack_lg">
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary-container">AiValytics</h1>
+<p class="font-label-sm text-label-sm text-on-primary-container">AI Placement Prep</p>
+</div>
+<nav class="flex-1 flex flex-col">
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 bg-white/10 text-secondary-container border-l-4 border-secondary-container py-3 px-6 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="quiz">quiz</span>
+<span class="font-body-md">Tests</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="business">business</span>
+<span class="font-body-md">Company Simulation</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="video_chat">video_chat</span>
+<span class="font-body-md">AI Interview</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="code">code</span>
+<span class="font-body-md">Coding Practice</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="emoji_events">emoji_events</span>
+<span class="font-body-md">Contests</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md">Results</span>
+</a>
+<a class="flex items-center gap-4 text-on-primary-container py-3 px-6 opacity-70 hover:opacity-100 transition-opacity hover:bg-white/5" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-body-md">Profile</span>
+</a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-secondary-container text-primary-container font-bold py-3 px-4 rounded-xl flex items-center justify-center gap-2 hover:brightness-110 transition-all">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                Upgrade to Pro
+            </button>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 h-header_height bg-primary flex justify-between items-center px-gutter z-50 left-[280px]">
+<div class="flex items-center gap-stack_md">
+<span class="text-on-primary font-headline-lg text-headline-lg font-bold">PlacementPrep</span>
+<div class="h-6 w-px bg-on-primary/20 mx-2"></div>
+<span class="text-on-primary/80 font-title-md text-title-md">AiValytics</span>
+</div>
+<div class="flex items-center gap-stack_md">
+<div class="flex items-center bg-on-primary/10 rounded-full px-4 py-2 gap-2">
+<span class="material-symbols-outlined text-on-primary" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-primary placeholder:text-on-primary/50 text-label-sm font-label-sm" placeholder="Search topics..." type="text">
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-on-primary/10 transition-colors">
+<span class="material-symbols-outlined text-on-primary" data-icon="notifications">notifications</span>
+</button>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-on-primary/20">
+<img alt="User Profile" data-alt="A professional headshot of a young male student in a clean studio setting. He wears a neutral-toned academic sweater, looking directly at the camera with a confident, studious expression. The lighting is soft and high-key, reflecting a modern, scholarly atmosphere within a minimalist architectural space using warm cream and navy blue accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXDdh6FAC7rqbH2H-4gN3I3b2hdFpc3Brw5ASw8SYfaJQWIhXxvjNRxDz25jNB2jCwMHXNyp8jAxT1sodlqGK7_95C3XhQyWI3oKwh7-Isb_q07zg54FwrAwvWuRHPDZPSp_p8960cLo3tROKmB9GRGLgz_uLyClYM52BshR8TbaT8Z2x_ctWlbSlF0n58U_-nwgeeD3Q6MJUr0xAaquG7Soi4uMN15ytCT9iGyGVeP28U2N5aNNhBnhgVnzfTbSfnqHk8qrSJAvUp">
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="pt-[calc(72px+48px)] pb-32 min-h-screen px-gutter ml-[280px]">
+<div class="max-w-container_max_width mx-auto">
+<!-- Step Indicator -->
+<nav class="mb-stack_lg flex justify-between items-center max-w-4xl mx-auto px-4">
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm shadow-sm">
+<span class="material-symbols-outlined" data-icon="check">check</span>
+</div>
+<span class="text-label-sm font-label-sm font-bold text-secondary">Subject</span>
+</div>
+<div class="flex-1 h-1 bg-secondary mx-4 rounded-full"></div>
+<div class="flex flex-col items-center gap-2 group cursor-pointer">
+<div class="w-10 h-10 rounded-full bg-secondary text-on-secondary flex items-center justify-center font-bold text-label-sm shadow-sm ring-4 ring-secondary/20">
+                        2
+                    </div>
+<span class="text-label-sm font-label-sm font-bold text-secondary">Topic</span>
+</div>
+<div class="flex-1 h-1 bg-surface-container-highest mx-4 rounded-full"></div>
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                        3
+                    </div>
+<span class="text-label-sm font-label-sm">Subtopic</span>
+</div>
+<div class="flex-1 h-1 bg-surface-container-highest mx-4 rounded-full"></div>
+<div class="flex flex-col items-center gap-2 opacity-50">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center font-bold text-label-sm">
+                        4
+                    </div>
+<span class="text-label-sm font-label-sm">Instructions</span>
+</div>
+</nav>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+<!-- Column 1: Subjects -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-lg text-title-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="school">school</span>
+                        Select Subject
+                    </h2>
+<div class="bg-surface-container-lowest rounded-xl card-border p-4 flex flex-col gap-3 overflow-y-auto custom-scroll flex-1">
+<!-- Subject Item -->
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] active-selection group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Quantitative Aptitude</h3>
+<span class="bg-secondary/10 text-secondary text-[10px] uppercase font-bold px-2 py-0.5 rounded">Weak Area</span>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 75%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">75% Complete</span>
+<span class="">Avg. 64%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">1,240 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Data Interpretation</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 40%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">40% Complete</span>
+<span class="">Avg. 82%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">850 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group opacity-70">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Logical Reasoning</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 10%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">10% Complete</span>
+<span class="">Avg. 55%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">2,100 questions available</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Column 2: Topics -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-lg text-title-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="category">category</span>
+                        Select Topic
+                    </h2>
+<div class="bg-surface-container-lowest rounded-xl card-border p-4 flex flex-col gap-3 overflow-y-auto custom-scroll flex-1">
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] active-selection group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Number Systems</h3>
+<span class="bg-secondary/10 text-secondary text-[10px] uppercase font-bold px-2 py-0.5 rounded">Recommended</span>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 85%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">85% Complete</span>
+<span class="">Avg. 42%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">145 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Profit &amp; Loss</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 30%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">30% Complete</span>
+<span class="">Avg. 76%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">98 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Time &amp; Work</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 0%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">0% Complete</span>
+<span class="">Avg. N/A</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">120 questions available</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Column 3: Subtopics -->
+<section class="flex flex-col gap-4">
+<h2 class="font-headline-lg text-title-md flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="list_alt">list_alt</span>
+                        Select Subtopic
+                    </h2>
+<div class="bg-surface-container-lowest rounded-xl card-border p-4 flex flex-col gap-3 overflow-y-auto custom-scroll flex-1">
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Prime Numbers &amp; Factors</h3>
+<span class="bg-secondary/10 text-secondary text-[10px] uppercase font-bold px-2 py-0.5 rounded">High Yield</span>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 90%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">90% Complete</span>
+<span class="">Avg. 38%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">45 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">Divisibility Rules</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 25%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">25% Complete</span>
+<span class="">Avg. 68%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">32 questions available</p>
+</div>
+</div>
+<div class="p-4 rounded-lg border border-transparent hover:border-outline-variant cursor-pointer transition-all active:scale-[0.98] bg-white group">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-work font-semibold text-body-md group-hover:text-secondary transition-colors">HCF &amp; LCM</h3>
+</div>
+<div class="space-y-2">
+<div class="w-full bg-surface-container-high h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 15%;"></div>
+</div>
+<div class="flex justify-between text-[11px] font-medium text-on-surface-variant">
+<span class="">15% Complete</span>
+<span class="">Avg. 72%</span>
+</div>
+<p class="text-[12px] text-on-surface-variant italic">68 questions available</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Bottom Action Bar -->
+<footer class="fixed bottom-0 right-0 h-24 bg-surface-container-lowest shadow-[0_-4px_24px_rgba(0,0,0,0.04)] border-t border-outline-variant px-gutter flex items-center z-50 left-[280px]">
+<div class="max-w-container_max_width mx-auto w-full flex justify-between items-center">
+<div class="flex items-center gap-4">
+<button class="px-6 py-3 font-work font-semibold text-primary border border-primary/20 rounded-lg hover:bg-surface-container-low transition-all active:scale-95 flex items-center gap-2">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+                    Back
+                </button>
+<div class="hidden sm:flex flex-col">
+<span class="text-label-sm font-label-sm text-on-surface-variant">Selection Summary</span>
+<span class="text-body-md font-work font-bold text-primary">Quant &gt; Number Systems</span>
+</div>
+</div>
+<div class="flex items-center gap-gutter">
+<div class="hidden lg:block text-right">
+<p class="text-label-sm font-label-sm text-on-surface-variant">Estimated Duration</p>
+<p class="text-body-md font-work font-bold text-primary">25 Minutes</p>
+</div>
+<button class="px-10 py-3 bg-primary text-on-primary font-work font-bold rounded-lg hover:bg-primary-container transition-all active:scale-95 shadow-lg flex items-center gap-2">
+                    Continue to Instructions
+                    <span class="material-symbols-outlined text-[20px]" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interactions for selection states
+        document.querySelectorAll('.group').forEach(item => {
+            item.addEventListener('click', function() {
+                // Remove active class from siblings in the same column
+                const column = this.closest('section');
+                column.querySelectorAll('.group').forEach(el => el.classList.remove('active-selection', 'bg-white'));
+                column.querySelectorAll('.group').forEach(el => el.classList.add('bg-white'));
+                
+                // Add active class to clicked item
+                this.classList.add('active-selection');
+                this.classList.remove('bg-white');
+            });
+        });
+    </script>
+
+
+</body></html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AiValytics - Test Results &amp; Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Work+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Use Tailwind Config from instructions -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed-variant": "#354766",
+                    "surface-container-low": "#f3f3f4",
+                    "on-surface-variant": "#44474d",
+                    "primary": "#00030c",
+                    "on-surface": "#1a1c1c",
+                    "on-secondary-fixed": "#271900",
+                    "inverse-surface": "#2f3131",
+                    "tertiary": "#030201",
+                    "surface-container-lowest": "#ffffff",
+                    "outline": "#74777e",
+                    "tertiary-fixed-dim": "#cac6bb",
+                    "inverse-primary": "#b4c7ec",
+                    "on-tertiary": "#ffffff",
+                    "on-error": "#ffffff",
+                    "tertiary-container": "#1e1d16",
+                    "inverse-on-surface": "#f0f1f1",
+                    "secondary-fixed-dim": "#f5bd58",
+                    "on-primary-container": "#7386a8",
+                    "on-secondary-container": "#755100",
+                    "on-error-container": "#93000a",
+                    "surface-container-highest": "#e2e2e2",
+                    "on-tertiary-fixed": "#1d1c15",
+                    "surface-dim": "#dadada",
+                    "surface-container-high": "#e8e8e8",
+                    "surface": "#f9f9f9",
+                    "on-primary": "#ffffff",
+                    "primary-container": "#071d3a",
+                    "error-container": "#ffdad6",
+                    "secondary": "#7d5700",
+                    "on-secondary-fixed-variant": "#5f4100",
+                    "secondary-container": "#ffc55f",
+                    "primary-fixed": "#d6e3ff",
+                    "tertiary-fixed": "#e7e2d6",
+                    "background": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#051b38",
+                    "surface-variant": "#e2e2e2",
+                    "outline-variant": "#c4c6ce",
+                    "secondary-fixed": "#ffdeaa",
+                    "surface-container": "#eeeeee",
+                    "surface-bright": "#f9f9f9",
+                    "primary-fixed-dim": "#b4c7ec",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#4c5f7f",
+                    "on-tertiary-fixed-variant": "#49473e",
+                    "on-tertiary-container": "#88857b",
+                    "on-background": "#1a1c1c"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack_md": "16px",
+                    "stack_sm": "8px",
+                    "margin_mobile": "16px",
+                    "header_height": "72px",
+                    "gutter": "24px",
+                    "container_max_width": "1280px",
+                    "stack_lg": "32px",
+                    "sidebar_width": "280px"
+            },
+            "fontFamily": {
+                    "code-xs": ["Inter"],
+                    "headline-lg-mobile": ["Work Sans"],
+                    "label-sm": ["Inter"],
+                    "title-md": ["Work Sans"],
+                    "headline-lg": ["Work Sans"],
+                    "display-lg": ["Work Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "code-xs": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-sm": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "title-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #F8F3E7; /* Brand Warm Cream */
+            color: #1a1c1c;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-card {
+            background-color: #ffffff;
+            border: 1px solid #E5E1D5;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.04);
+            border-radius: 8px;
+        }
+        .circular-progress {
+            background: conic-gradient(#7d5700 78%, #f3f3f4 0);
+        }
+    </style>
+</head>
+<body class="font-body-md overflow-x-hidden">
+<!-- Sidebar Navigation -->
+<aside class="flex flex-col h-full w-[280px] fixed left-0 top-0 z-40 bg-primary dark:bg-primary">
+<div class="p-8">
+<h1 class="font-headline-lg text-headline-lg font-bold text-secondary-fixed">Placement Pro</h1>
+<p class="font-label-sm text-label-sm text-on-primary/60">Elite Academy</p>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-on-primary-fixed-variant text-secondary-fixed border-l-4 border-secondary-fixed" href="#">
+<span class="material-symbols-outlined">quiz</span>
+<span class="font-label-sm text-label-sm">Practice Tests</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="font-label-sm text-label-sm">Placement Insights</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">map</span>
+<span class="font-label-sm text-label-sm">Skill Roadmap</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-primary/70 hover:text-on-primary transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="bg-primary-container p-4 rounded-xl border border-on-primary-fixed-variant/30">
+<p class="font-label-sm text-label-sm text-on-primary mb-2">Ready for the elite level?</p>
+<button class="w-full py-2 bg-secondary text-on-secondary font-bold rounded-lg text-label-sm hover:scale-[1.02] transition-transform">Upgrade to Premium</button>
+</div>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center h-[72px] px-8 ml-[280px] bg-surface-container-lowest border-b border-outline-variant sticky top-0 z-30">
+<div class="flex items-center gap-4">
+<h2 class="font-title-md text-title-md font-bold text-primary">Performance Dashboard</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 text-label-sm focus:ring-2 focus:ring-primary" placeholder="Search analytics..." type="text">
+</div>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors">help</button>
+</div>
+<div class="w-10 h-10 rounded-full bg-secondary-fixed border border-outline-variant overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1dnxQa3oNMbAH8NzC70OeuMIpYrk1Ol2sdDaFtlNKZdLszs1WVE9_3wG3v9-y1qUTNsvcbJhCeemvKVIkscHOGhw7XcWdUmW7x1gEHISGlkPQ5NCU4UA__Qa44UyOAG_NuXwoLMXnz0SQPcYOfgasiItlY_Wpc81lJAsdWWJAfzRQIjjbQ1xSs7VfuDZF-DqT6AHHsue7V3OvyYqi-pspEms6j8Ag2IpROxh9liCBRYwJ93bk_vtdkWc9YNEucPUFbok8Oc1PtZFl">
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-[280px] p-8 max-w-[1280px] mx-auto">
+<!-- Hero Header -->
+<section class="mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div>
+<nav class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-2">
+<span>Practice Tests</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span>Analytics</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg text-primary">Performance Analysis: Prime Numbers &amp; Factors Practice</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-2 max-w-2xl">Excellent effort! Your understanding of prime concepts is above average, with notable speed in factor identification.</p>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 border-2 border-primary text-primary font-bold rounded-lg hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined">refresh</span> Retry Test
+                </button>
+<button class="px-6 py-3 bg-secondary text-on-secondary font-bold rounded-lg hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined">download</span> Download Result
+                </button>
+</div>
+</section>
+<!-- Overview Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack_lg">
+<!-- Score Card -->
+<div class="custom-card p-6 flex flex-col items-center justify-center">
+<div class="relative w-32 h-32 flex items-center justify-center">
+<div class="circular-progress absolute inset-0 rounded-full"></div>
+<div class="absolute inset-2 bg-white rounded-full flex flex-col items-center justify-center">
+<span class="font-headline-lg text-headline-lg text-primary">78%</span>
+<span class="text-label-sm font-label-sm text-on-surface-variant">Overall</span>
+</div>
+</div>
+<p class="mt-4 font-title-md text-title-md text-secondary">Strong Performance</p>
+</div>
+<!-- Stats Column -->
+<div class="custom-card p-6 flex flex-col justify-between">
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-4">Question Stats</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center">
+<span class="flex items-center gap-2 text-label-sm"><span class="w-3 h-3 rounded-full bg-green-600"></span> Correct</span>
+<span class="font-bold">24</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="flex items-center gap-2 text-label-sm"><span class="w-3 h-3 rounded-full bg-red-500"></span> Incorrect</span>
+<span class="font-bold">4</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="flex items-center gap-2 text-label-sm"><span class="w-3 h-3 rounded-full bg-outline-variant"></span> Skipped</span>
+<span class="font-bold">2</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Time Taken -->
+<div class="custom-card p-6 flex flex-col justify-center text-center">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">timer</span>
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-1">Time Taken</p>
+<p class="font-headline-lg text-headline-lg text-primary">38:15</p>
+<p class="text-[12px] text-green-600 font-medium">12% faster than average</p>
+</div>
+<!-- Percentile -->
+<div class="custom-card p-6 flex flex-col justify-center text-center bg-primary text-on-primary">
+<span class="material-symbols-outlined text-secondary-fixed text-4xl mb-2">workspace_premium</span>
+<p class="font-label-sm text-label-sm opacity-70 mb-1">Global Percentile</p>
+<p class="font-headline-lg text-headline-lg text-secondary-fixed">92nd</p>
+<p class="text-[12px] opacity-70 font-medium">Top 8% of all candidates</p>
+</div>
+</div>
+<!-- Performance Breakdown & Recommendations -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter mb-stack_lg">
+<!-- Breakdown -->
+<div class="lg:col-span-2 custom-card p-8">
+<h3 class="font-title-md text-title-md text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bar_chart</span> Topic-wise Performance
+                </h3>
+<div class="space-y-8">
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span>Number Theory</span>
+<span class="font-bold">85%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 85%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span>Factors &amp; Multiples</span>
+<span class="font-bold">70%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 70%"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-label-sm text-label-sm">
+<span>Prime Identification</span>
+<span class="font-bold">90%</span>
+</div>
+<div class="h-3 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 90%"></div>
+</div>
+</div>
+</div>
+<div class="mt-10 pt-8 border-t border-outline-variant">
+<h4 class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-4">Weak Areas</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-4 py-2 bg-secondary-fixed text-on-secondary-fixed font-bold text-label-sm rounded-full flex items-center gap-2">
+                            Advanced Divisibility <span class="material-symbols-outlined text-[18px]">trending_up</span>
+</span>
+<span class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-bold text-label-sm rounded-full">
+                            Co-prime Logic
+                        </span>
+<span class="px-4 py-2 bg-surface-container-low text-on-surface-variant font-bold text-label-sm rounded-full">
+                            Composite Factorization
+                        </span>
+</div>
+</div>
+</div>
+<!-- Recommendations -->
+<div class="space-y-6">
+<h3 class="font-title-md text-title-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span> Recommended Next
+                </h3>
+<div class="custom-card p-6 group cursor-pointer hover:border-secondary transition-all">
+<div class="w-12 h-12 bg-secondary-fixed/30 rounded-lg flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<h4 class="font-title-md text-title-md mb-2 group-hover:text-secondary transition-colors">LCM &amp; HCF Masterclass</h4>
+<p class="text-label-sm text-on-surface-variant mb-4">Master the foundations of common factors and multiples with advanced shortcuts.</p>
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-bold text-secondary uppercase">Intermediate</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+<div class="custom-card p-6 group cursor-pointer hover:border-secondary transition-all">
+<div class="w-12 h-12 bg-secondary-fixed/30 rounded-lg flex items-center justify-center mb-4 text-secondary">
+<span class="material-symbols-outlined">functions</span>
+</div>
+<h4 class="font-title-md text-title-md mb-2 group-hover:text-secondary transition-colors">Modular Arithmetic</h4>
+<p class="text-label-sm text-on-surface-variant mb-4">Connect your prime number knowledge to advanced modular concepts.</p>
+<div class="flex items-center justify-between">
+<span class="text-[12px] font-bold text-secondary uppercase">Advanced</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Answer Review Table -->
+<section class="custom-card overflow-hidden">
+<div class="px-8 py-6 border-b border-outline-variant flex justify-between items-center bg-surface-container-lowest">
+<h3 class="font-title-md text-title-md text-primary">Answer Review</h3>
+<div class="flex gap-4">
+<select class="border-outline-variant rounded-lg text-label-sm focus:ring-primary">
+<option>All Questions</option>
+<option>Incorrect Only</option>
+<option>Skipped Only</option>
+</select>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<tr>
+<th class="px-8 py-4">Q.No</th>
+<th class="px-8 py-4">Question Preview</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4">Topic</th>
+<th class="px-8 py-4">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-5 font-bold">01</td>
+<td class="px-8 py-5 text-label-sm">Which of the following is the only even prime...</td>
+<td class="px-8 py-5">
+<span class="flex items-center gap-2 text-green-600 font-bold text-label-sm">
+<span class="material-symbols-outlined">check_circle</span> Correct
+                                </span>
+</td>
+<td class="px-8 py-5 text-label-sm">Prime Identification</td>
+<td class="px-8 py-5">
+<a class="text-secondary font-bold text-label-sm hover:underline" href="#">View Explanation</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-5 font-bold">02</td>
+<td class="px-8 py-5 text-label-sm">Find the prime factorization of 1240...</td>
+<td class="px-8 py-5">
+<span class="flex items-center gap-2 text-red-500 font-bold text-label-sm">
+<span class="material-symbols-outlined">cancel</span> Incorrect
+                                </span>
+</td>
+<td class="px-8 py-5 text-label-sm">Factors &amp; Multiples</td>
+<td class="px-8 py-5">
+<a class="text-secondary font-bold text-label-sm hover:underline" href="#">View Explanation</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-5 font-bold">03</td>
+<td class="px-8 py-5 text-label-sm">How many divisors does the number 48 have...</td>
+<td class="px-8 py-5">
+<span class="flex items-center gap-2 text-green-600 font-bold text-label-sm">
+<span class="material-symbols-outlined">check_circle</span> Correct
+                                </span>
+</td>
+<td class="px-8 py-5 text-label-sm">Number Theory</td>
+<td class="px-8 py-5">
+<a class="text-secondary font-bold text-label-sm hover:underline" href="#">View Explanation</a>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-5 font-bold">04</td>
+<td class="px-8 py-5 text-label-sm">If P is a prime number greater than 3, then...</td>
+<td class="px-8 py-5">
+<span class="flex items-center gap-2 text-outline font-bold text-label-sm">
+<span class="material-symbols-outlined">block</span> Skipped
+                                </span>
+</td>
+<td class="px-8 py-5 text-label-sm">Advanced Primes</td>
+<td class="px-8 py-5">
+<a class="text-secondary font-bold text-label-sm hover:underline" href="#">View Explanation</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-8 py-4 bg-surface-container-low flex justify-center">
+<button class="text-primary font-bold text-label-sm flex items-center gap-2">
+                    Show More Questions <span class="material-symbols-outlined">expand_more</span>
+</button>
+</div>
+</section>
+</main>
+<footer class="ml-[280px] p-8 mt-12 border-t border-outline-variant text-center">
+<div class="max-w-[600px] mx-auto">
+<h4 class="font-title-md text-title-md text-primary mb-2 italic">"Precision is the hallmark of progress."</h4>
+<p class="text-on-surface-variant text-label-sm">AiValytics Intelligence Engine • Data accurate as of today at 14:30 GMT</p>
+</div>
+</footer>
+<!-- Atmosphere/Micro-interaction Script -->
+<script>
+        document.querySelectorAll('.custom-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.classList.add('scale-[1.01]');
+            });
+            card.addEventListener('mouseleave', () => {
+                card.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Simple animation for progress bars
+        window.addEventListener('load', () => {
+            const progressBars = document.querySelectorAll('.h-full.bg-secondary');
+            progressBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {
+                    bar.style.transition = 'width 1.2s cubic-bezier(0.4, 0, 0.2, 1)';
+                    bar.style.width = width;
+                }, 200);
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>AiValytics - Online Test Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .timer-glow {
+            text-shadow: 0 0 10px rgba(245, 189, 88, 0.3);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e2e2;
+            border-radius: 10px;
+        }
+        .main-canvas {
+            background-color: #F8F3E7; /* Brand Anchor: Warm Cream */
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "inverse-surface": "#2f3131",
+                        "background": "#f9f9f9",
+                        "tertiary": "#030201",
+                        "primary-fixed": "#d6e3ff",
+                        "secondary": "#7d5700",
+                        "on-error-container": "#93000a",
+                        "surface": "#f9f9f9",
+                        "surface-tint": "#4c5f7f",
+                        "on-background": "#1a1c1c",
+                        "on-primary-container": "#7386a8",
+                        "tertiary-fixed": "#e7e2d6",
+                        "on-primary-fixed": "#051b38",
+                        "on-tertiary-fixed": "#1d1c15",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#f9f9f9",
+                        "tertiary-fixed-dim": "#cac6bb",
+                        "secondary-fixed-dim": "#f5bd58",
+                        "primary-container": "#071d3a",
+                        "on-tertiary-container": "#88857b",
+                        "on-surface-variant": "#44474d",
+                        "on-surface": "#1a1c1c",
+                        "on-primary-fixed-variant": "#354766",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e8e8e8",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed-variant": "#5f4100",
+                        "surface-variant": "#e2e2e2",
+                        "on-secondary-container": "#755100",
+                        "surface-container": "#eeeeee",
+                        "inverse-primary": "#b4c7ec",
+                        "outline-variant": "#c4c6ce",
+                        "tertiary-container": "#1e1d16",
+                        "inverse-on-surface": "#f0f1f1",
+                        "outline": "#74777e",
+                        "secondary-container": "#ffc55f",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-fixed-variant": "#49473e",
+                        "surface-container-low": "#f3f3f4",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#ffdeaa",
+                        "primary-fixed-dim": "#b4c7ec",
+                        "on-secondary-fixed": "#271900",
+                        "primary": "#00030c",
+                        "surface-dim": "#dadada",
+                        "surface-container-highest": "#e2e2e2"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "sidebar_width": "280px",
+                        "header_height": "72px",
+                        "gutter": "24px",
+                        "stack_md": "16px",
+                        "stack_lg": "32px",
+                        "stack_sm": "8px",
+                        "container_max_width": "1280px",
+                        "margin_mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "code-xs": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "title-md": ["Work Sans"],
+                        "headline-lg": ["Work Sans"],
+                        "display-lg": ["Work Sans"],
+                        "label-sm": ["Inter"]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="main-canvas font-body-md text-on-surface antialiased overflow-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full h-[72px] bg-primary-container text-on-primary flex justify-between items-center px-gutter z-50 border-b border-outline/20">
+<div class="flex items-center gap-4">
+<div class="flex flex-col">
+<span class="font-title-md text-title-md font-bold text-secondary-fixed-dim">AiValytics</span>
+<span class="font-label-sm text-label-sm text-on-primary/70">Prime Numbers &amp; Factors Practice</span>
+</div>
+</div>
+<div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-3 bg-white/5 px-6 py-2 rounded-full border border-white/10">
+<span class="material-symbols-outlined text-secondary-fixed-dim" data-icon="schedule">schedule</span>
+<span class="font-title-md text-title-md font-bold tracking-widest text-white timer-glow">44:52</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:flex gap-4 mr-4 text-on-primary/60">
+<span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors" data-icon="help">help</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-white transition-colors" data-icon="settings">settings</span>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-sm text-label-sm hover:bg-secondary-container hover:text-on-secondary-container transition-all active:scale-95 border border-white/10">
+                Submit Test
+            </button>
+</div>
+</header>
+<!-- Sidebar Wrapper -->
+<aside class="fixed left-0 top-0 bottom-0 w-sidebar_width bg-primary-container flex flex-col z-40 pt-[72px]">
+<div class="p-6 flex flex-col h-full">
+<div class="mb-8">
+<div class="flex items-center gap-3 mb-2">
+<img alt="Avatar" class="w-10 h-10 rounded-full border-2 border-secondary-fixed-dim" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZePeCBHxOtja7B7nrAW_Ey3dEFT_u0sUKJSjy5iv0GvcAgPEdGGnUEWxmm-iMtFhUud5_wRbk1t5KVLeXhnPFEkGnmkbTrFK2ZBoMGeD3MU93g3z_hEV1y7jTjwn79QlID-gW6WK5-538zI2Dg5Go5YrKAml8ZdLOXku1Xaw-kldjQbVUdNrk-5yxaneqsWi1cFKIkh4eZwfzO8l1RkxcI68DfL9L-UjduCR0O73ywSYnqx_gUjC0GGdy1pVxZjIdfObjoPDQEsdv">
+<div class="overflow-hidden">
+<p class="font-label-sm text-label-sm font-bold text-white truncate">Placement Prep</p>
+<p class="text-[10px] text-on-primary/60 uppercase tracking-wider">Section: Technical MCQ</p>
+</div>
+</div>
+<div class="mt-6 bg-white/5 p-4 rounded-xl border border-white/5">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-sm text-label-sm text-on-primary/80">Progress</span>
+<span class="font-label-sm text-label-sm text-secondary-fixed-dim">12 of 30 Answered</span>
+</div>
+<div class="w-full h-1.5 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-secondary-fixed-dim" style="width: 40%"></div>
+</div>
+</div>
+</div>
+<!-- Question Grid -->
+<div class="flex-1 overflow-y-auto custom-scrollbar pr-2">
+<div class="grid grid-cols-5 gap-3">
+<!-- Generating mock questions 1-30 -->
+<!-- Active/Current: Q12 -->
+<script>
+                        const statusColors = {
+                            answered: 'bg-green-600 text-white',
+                            not_answered: 'bg-white/10 text-on-primary/40',
+                            marked: 'bg-secondary text-white',
+                            current: 'bg-white text-primary border-2 border-secondary-fixed-dim font-bold'
+                        };
+                        
+                        for(let i=1; i<=30; i++) {
+                            let status = 'not_answered';
+                            if (i < 12) status = 'answered';
+                            if (i === 15 || i === 22) status = 'marked';
+                            if (i === 12) status = 'current';
+
+                            document.write(`
+                                <button class="aspect-square flex items-center justify-center rounded-lg font-label-sm text-label-sm transition-all hover:scale-105 active:scale-95 ${statusColors[status]}">
+                                    ${i}
+                                </button>
+                            `);
+                        }
+                    </script>
+</div>
+</div>
+<!-- Legend -->
+<div class="mt-auto pt-6 border-t border-white/10 grid grid-cols-2 gap-y-3">
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-green-600"></div>
+<span class="text-[10px] text-on-primary/60">Answered</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-white/10"></div>
+<span class="text-[10px] text-on-primary/60">Not Answered</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-secondary"></div>
+<span class="text-[10px] text-on-primary/60">Marked</span>
+</div>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full border border-white"></div>
+<span class="text-[10px] text-on-primary/60">Current</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-sidebar_width pt-[72px] h-screen flex flex-col overflow-hidden">
+<div class="flex-1 p-gutter overflow-y-auto">
+<div class="max-w-[800px] mx-auto">
+<!-- Breadcrumbs/Section Title -->
+<div class="mb-stack_lg">
+<div class="flex items-center gap-2 text-on-surface-variant font-label-sm text-label-sm mb-4">
+<span>Quantitative Aptitude</span>
+<span class="material-symbols-outlined text-[16px]" data-icon="chevron_right">chevron_right</span>
+<span>Number Systems</span>
+</div>
+<div class="bg-surface-container-lowest p-gutter rounded-xl border border-outline-variant shadow-sm">
+<!-- Question Header -->
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary">Question 12</h2>
+<div class="w-12 h-1 bg-secondary-fixed-dim mt-2"></div>
+</div>
+<div class="bg-surface-container p-2 px-4 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-secondary" data-icon="star">star</span>
+<span class="font-label-sm text-label-sm font-bold text-secondary">4 Points</span>
+</div>
+</div>
+<!-- Question Text -->
+<div class="font-body-lg text-body-lg text-on-surface mb-stack_lg leading-relaxed">
+                            If 'p' and 'q' are prime numbers such that <span class="italic font-serif">p &gt; q</span>, what is the value of <span class="italic font-serif">p<sup>2</sup> - q<sup>2</sup></span> if their sum is 12?
+                        </div>
+<!-- MCQ Options -->
+<div class="space-y-4">
+<!-- Option A -->
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mcq" type="radio">
+<div class="flex items-center p-4 rounded-lg border border-outline-variant bg-white transition-all peer-checked:bg-secondary-fixed/10 peer-checked:border-secondary peer-checked:ring-1 peer-checked:ring-secondary group-hover:bg-surface-container-low">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center font-bold mr-4 text-on-surface-variant peer-checked:bg-secondary peer-checked:text-white transition-colors group-hover:border-secondary">A</span>
+<span class="font-body-md text-body-md">24</span>
+</div>
+</label>
+<!-- Option B (Selected State) -->
+<label class="group block cursor-pointer">
+<input checked="" class="hidden peer" name="mcq" type="radio">
+<div class="flex items-center p-4 rounded-lg border border-secondary bg-secondary-fixed/20 ring-1 ring-secondary transition-all group-hover:bg-secondary-fixed/30">
+<span class="w-8 h-8 rounded-full bg-secondary text-white flex items-center justify-center font-bold mr-4">B</span>
+<span class="font-body-md text-body-md">48</span>
+<div class="ml-auto">
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill">check_circle</span>
+</div>
+</div>
+</label>
+<!-- Option C -->
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mcq" type="radio">
+<div class="flex items-center p-4 rounded-lg border border-outline-variant bg-white transition-all peer-checked:bg-secondary-fixed/10 peer-checked:border-secondary peer-checked:ring-1 peer-checked:ring-secondary group-hover:bg-surface-container-low">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center font-bold mr-4 text-on-surface-variant transition-colors group-hover:border-secondary">C</span>
+<span class="font-body-md text-body-md">36</span>
+</div>
+</label>
+<!-- Option D -->
+<label class="group block cursor-pointer">
+<input class="hidden peer" name="mcq" type="radio">
+<div class="flex items-center p-4 rounded-lg border border-outline-variant bg-white transition-all peer-checked:bg-secondary-fixed/10 peer-checked:border-secondary peer-checked:ring-1 peer-checked:ring-secondary group-hover:bg-surface-container-low">
+<span class="w-8 h-8 rounded-full border border-outline-variant flex items-center justify-center font-bold mr-4 text-on-surface-variant transition-colors group-hover:border-secondary">D</span>
+<span class="font-body-md text-body-md">72</span>
+</div>
+</label>
+</div>
+</div>
+</div>
+<!-- Auxiliary Information Card -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack_md">
+<div class="bg-white/50 p-6 rounded-xl border border-outline-variant/50">
+<h4 class="font-label-sm text-label-sm font-bold text-on-surface-variant mb-2">Calculator Hint</h4>
+<p class="text-[13px] text-on-surface-variant/80">Remember: A prime number is a natural number greater than 1 that has no positive divisors other than 1 and itself.</p>
+</div>
+<div class="bg-white/50 p-6 rounded-xl border border-outline-variant/50 relative overflow-hidden group">
+<div class="absolute right-[-20px] top-[-20px] opacity-10 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-[120px]" data-icon="calculate">calculate</span>
+</div>
+<h4 class="font-label-sm text-label-sm font-bold text-on-surface-variant mb-2">Quick Reference</h4>
+<ul class="text-[12px] text-on-surface-variant/80 space-y-1">
+<li>• p + q = 12</li>
+<li>• Find p² - q²</li>
+<li>• Hint: (p+q)(p-q)</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Control Bar -->
+<footer class="h-20 bg-surface-container-lowest border-t border-outline-variant/40 px-gutter flex justify-between items-center z-50">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg border border-outline text-on-surface-variant font-label-sm text-label-sm hover:bg-surface-container transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+                    Previous
+                </button>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-6 py-2.5 rounded-lg text-secondary font-label-sm text-label-sm hover:bg-secondary-fixed/20 transition-all active:scale-95">
+<span class="material-symbols-outlined" data-icon="bookmark" data-weight="fill">bookmark</span>
+                    Mark for Review
+                </button>
+<div class="w-px h-6 bg-outline-variant mx-2"></div>
+<button class="flex items-center gap-2 px-8 py-2.5 rounded-lg bg-primary-container text-white font-label-sm text-label-sm hover:shadow-lg transition-all active:scale-95">
+                    Save &amp; Next
+                    <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</footer>
+</main>
+<!-- Overlay Micro-interaction for Atmosphere -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-[100]" style="background-image: radial-gradient(#071D3A 1px, transparent 1px); background-size: 40px 40px;">
+</div>
+<script>
+        // Simple micro-interaction for the countdown
+        let time = 44 * 60 + 52;
+        const timerElement = document.querySelector('.timer-glow');
+        
+        setInterval(() => {
+            time--;
+            let mins = Math.floor(time / 60);
+            let secs = time % 60;
+            timerElement.textContent = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            
+            if(time < 300) { // Last 5 minutes
+                timerElement.classList.add('text-error');
+                timerElement.classList.remove('text-white');
+            }
+        }, 1000);
+
+        // Highlight selected nav items
+        document.querySelectorAll('aside button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('aside button').forEach(b => {
+                    if(!b.classList.contains('bg-green-600') && !b.classList.contains('bg-secondary')) {
+                        b.className = "aspect-square flex items-center justify-center rounded-lg font-label-sm text-label-sm transition-all hover:scale-105 active:scale-95 bg-white/10 text-on-primary/40";
+                    }
+                });
+                this.className = "aspect-square flex items-center justify-center rounded-lg font-label-sm text-label-sm transition-all hover:scale-105 active:scale-95 bg-white text-primary border-2 border-secondary-fixed-dim font-bold";
+            });
+        });
+    </script>
+</body></html>
