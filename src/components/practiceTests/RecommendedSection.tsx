@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import { recommendedTopics } from "../../data/practiceTests";
+import { api, type Recommendation } from "../../services/api";
 
 function RecommendedSection() {
+  const [topics, setTopics] = useState<Recommendation[]>(recommendedTopics);
+
+  useEffect(() => {
+    api
+      .getRecommendations("demo-user")
+      .then((response) => setTopics(response.recommendations))
+      .catch(() => setTopics(recommendedTopics));
+  }, []);
+
   return (
     <section className="rounded-lg border border-practice-line bg-white p-4 shadow-dashboard">
       <h4 className="mb-4 flex items-center gap-2 text-xl font-bold text-practice-ink">
@@ -8,7 +19,7 @@ function RecommendedSection() {
         Recommended
       </h4>
       <div className="space-y-4">
-        {recommendedTopics.map((topic) => (
+        {topics.map((topic) => (
           <button
             key={topic.title}
             type="button"

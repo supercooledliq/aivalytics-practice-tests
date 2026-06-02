@@ -23,3 +23,9 @@ dist-ssr
 *.sln
 *.sw?
 screen*.html
+
+# Python backend
+__pycache__/
+*.py[cod]
+.venv/
+backend/.env

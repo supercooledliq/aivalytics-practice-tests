@@ -1,6 +1,17 @@
+import { useEffect, useState } from "react";
 import { weakAreas } from "../../data/practiceTests";
+import { api, type WeakArea } from "../../services/api";
 
 function WeakAreasSection() {
+  const [areas, setAreas] = useState<WeakArea[]>(weakAreas);
+
+  useEffect(() => {
+    api
+      .getWeakAreas("demo-user")
+      .then((response) => setAreas(response.weakAreas))
+      .catch(() => setAreas(weakAreas));
+  }, []);
+
   return (
     <section className="relative overflow-hidden rounded-lg border border-practice-ink bg-practice-ink p-4 text-white shadow-dashboard">
       <div className="absolute -right-10 -top-10 h-28 w-28 rounded-full bg-practice-amber/20 blur-2xl" />
@@ -12,7 +23,7 @@ function WeakAreasSection() {
         <p className="mb-6 text-xs italic text-white/60">Based on your last 3 attempts</p>
 
         <div className="space-y-6">
-          {weakAreas.map((area) => (
+          {areas.map((area) => (
             <div key={area.topic}>
               <div className="mb-2 flex justify-between text-xs">
                 <span>{area.topic}</span>

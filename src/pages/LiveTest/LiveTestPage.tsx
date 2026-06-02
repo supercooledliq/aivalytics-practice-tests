@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { liveQuestion, selectedTest } from "../../data/testFlow";
+import { api } from "../../services/api";
+import type { LiveQuestion } from "../../types/testFlow";
 
 function formatTime(totalSeconds: number) {
   const minutes = Math.floor(totalSeconds / 60)
@@ -13,10 +15,15 @@ function formatTime(totalSeconds: number) {
 
 function LiveTestPage() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const attemptId = searchParams.get("attemptId");
   const [remainingSeconds, setRemainingSeconds] = useState(44 * 60 + 52);
   const [selectedOption, setSelectedOption] = useState(liveQuestion.answerId ?? "");
   const [currentQuestion, setCurrentQuestion] = useState(liveQuestion.id);
   const [marked, setMarked] = useState([15, 22]);
+  const [question, setQuestion] = useState<LiveQuestion>(liveQuestion);
+  const [totalQuestions, setTotalQuestions] = useState(selectedTest.questions);
+  const [answeredCount, setAnsweredCount] = useState(11 + (liveQuestion.answerId ? 1 : 0));
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -26,9 +33,27 @@ function LiveTestPage() {
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    if (!attemptId) {
+      return;
+    }
+
+    api
+      .getAttemptQuestions(attemptId)
+      .then((response) => {
+        setQuestion(response.question);
+        setCurrentQuestion(response.question.id);
+        setSelectedOption(response.question.answerId ?? "");
+        setMarked(response.markedQuestions);
+        setTotalQuestions(response.totalQuestions);
+        setAnsweredCount(response.attempt.answeredCount);
+      })
+      .catch(() => undefined);
+  }, [attemptId]);
+
   const questionButtons = useMemo(
     () =>
-      Array.from({ length: selectedTest.questions }, (_, index) => {
+      Array.from({ length: totalQuestions }, (_, index) => {
         const number = index + 1;
 
         if (number === currentQuestion) {
@@ -39,16 +64,14 @@ function LiveTestPage() {
           return { number, status: "marked" };
         }
 
-        if (number < liveQuestion.id) {
+        if (number < question.id) {
           return { number, status: "answered" };
         }
 
         return { number, status: "not_answered" };
       }),
-    [currentQuestion, marked],
+    [currentQuestion, marked, question.id, totalQuestions],
   );
-
-  const answeredCount = 11 + (selectedOption ? 1 : 0);
 
   const toggleMarked = () => {
     setMarked((current) =>
@@ -58,9 +81,15 @@ function LiveTestPage() {
     );
   };
 
-  const handleSaveNext = () => {
-    if (currentQuestion >= selectedTest.questions) {
-      navigate("/practice-tests/results");
+  const handleSaveNext = async () => {
+    if (attemptId) {
+      await api.saveAnswer(attemptId, currentQuestion, selectedOption || null).catch(() => undefined);
+    }
+
+    setAnsweredCount((current) => Math.max(current, currentQuestion));
+
+    if (currentQuestion >= totalQuestions) {
+      navigate(attemptId ? `/practice-tests/results?attemptId=${attemptId}` : "/practice-tests/results");
       return;
     }
 
@@ -103,7 +132,12 @@ function LiveTestPage() {
         </div>
         <button
           type="button"
-          onClick={() => navigate("/practice-tests/results")}
+          onClick={async () => {
+            if (attemptId) {
+              await api.submitAttempt(attemptId).catch(() => undefined);
+            }
+            navigate(attemptId ? `/practice-tests/results?attemptId=${attemptId}` : "/practice-tests/results");
+          }}
           className="rounded-lg border border-white/10 bg-practice-ink px-5 py-2 text-sm font-bold transition hover:bg-practice-amber hover:text-practice-ink"
         >
           Submit Test
@@ -127,13 +161,13 @@ function LiveTestPage() {
             <div className="mb-2 flex justify-between text-sm">
               <span className="text-white/80">Progress</span>
               <span className="text-practice-amber">
-                {answeredCount} of {selectedTest.questions} Answered
+                {answeredCount} of {totalQuestions} Answered
               </span>
             </div>
             <div className="h-1.5 overflow-hidden rounded-full bg-white/10">
               <div
                 className="h-full rounded-full bg-practice-amber"
-                style={{ width: `${(answeredCount / selectedTest.questions) * 100}%` }}
+                style={{ width: `${(answeredCount / totalQuestions) * 100}%` }}
               />
             </div>
           </div>
@@ -181,16 +215,16 @@ function LiveTestPage() {
                   <div className="mt-2 h-1 w-12 rounded-full bg-practice-amberDark" />
                 </div>
                 <div className="rounded-full bg-practice-muted px-4 py-2 text-sm font-bold text-practice-amberDark">
-                  {liveQuestion.points} Points
+                  {question.points} Points
                 </div>
               </div>
 
               <p className="mb-8 text-lg leading-relaxed text-practice-text">
-                {liveQuestion.text}
+                {question.text}
               </p>
 
               <div className="space-y-4">
-                {liveQuestion.options.map((option) => {
+                {question.options.map((option) => {
                   const isSelected = selectedOption === option.id;
 
                   return (

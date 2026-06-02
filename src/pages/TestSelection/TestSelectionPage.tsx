@@ -3,16 +3,35 @@ import PracticeShell from "../../components/testFlow/PracticeShell";
 import SelectionColumn from "../../components/testFlow/SelectionColumn";
 import StepIndicator from "../../components/testFlow/StepIndicator";
 import { selectedTest, subjects, subtopics, topics } from "../../data/testFlow";
-import { useState } from "react";
+import { api, type SelectionDataResponse } from "../../services/api";
+import { useEffect, useState } from "react";
 
 function TestSelectionPage() {
+  const [selectionData, setSelectionData] = useState<SelectionDataResponse>({
+    subjects,
+    topics,
+    subtopics,
+    selectedTest,
+  });
   const [selectedSubject, setSelectedSubject] = useState(subjects[0].id);
   const [selectedTopic, setSelectedTopic] = useState(topics[0].id);
   const [selectedSubtopic, setSelectedSubtopic] = useState(subtopics[0].id);
 
-  const currentSubject = subjects.find((item) => item.id === selectedSubject);
-  const currentTopic = topics.find((item) => item.id === selectedTopic);
-  const currentSubtopic = subtopics.find((item) => item.id === selectedSubtopic);
+  useEffect(() => {
+    api
+      .getSelectionData()
+      .then((data) => {
+        setSelectionData(data);
+        setSelectedSubject(data.subjects[0]?.id ?? subjects[0].id);
+        setSelectedTopic(data.topics[0]?.id ?? topics[0].id);
+        setSelectedSubtopic(data.subtopics[0]?.id ?? subtopics[0].id);
+      })
+      .catch(() => undefined);
+  }, []);
+
+  const currentSubject = selectionData.subjects.find((item) => item.id === selectedSubject);
+  const currentTopic = selectionData.topics.find((item) => item.id === selectedTopic);
+  const currentSubtopic = selectionData.subtopics.find((item) => item.id === selectedSubtopic);
 
   return (
     <PracticeShell title="Test Selection">
@@ -23,21 +42,21 @@ function TestSelectionPage() {
           <SelectionColumn
             title="Select Subject"
             icon="S"
-            items={subjects}
+            items={selectionData.subjects}
             selectedId={selectedSubject}
             onSelect={setSelectedSubject}
           />
           <SelectionColumn
             title="Select Topic"
             icon="T"
-            items={topics}
+            items={selectionData.topics}
             selectedId={selectedTopic}
             onSelect={setSelectedTopic}
           />
           <SelectionColumn
             title="Select Subtopic"
             icon="ST"
-            items={subtopics}
+            items={selectionData.subtopics}
             selectedId={selectedSubtopic}
             onSelect={setSelectedSubtopic}
           />
@@ -63,7 +82,9 @@ function TestSelectionPage() {
           <div className="flex items-center gap-6">
             <div className="hidden text-right lg:block">
               <p className="text-xs font-semibold text-practice-subdued">Estimated Duration</p>
-              <p className="font-extrabold text-practice-ink">{selectedTest.duration} Minutes</p>
+              <p className="font-extrabold text-practice-ink">
+                {selectionData.selectedTest.duration} Minutes
+              </p>
             </div>
             <Link
               to="/practice-tests/instructions"

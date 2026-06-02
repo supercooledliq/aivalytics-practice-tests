@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MetricCard from "../../components/testFlow/MetricCard";
 import PracticeShell from "../../components/testFlow/PracticeShell";
 import { selectedTest } from "../../data/testFlow";
+import { api } from "../../services/api";
+import type { TestSummary } from "../../types/testFlow";
 
 const checklist = [
   "My internet connection is stable and fast.",
@@ -15,6 +17,7 @@ function TestInstructionsPage() {
   const navigate = useNavigate();
   const [checkedItems, setCheckedItems] = useState<string[]>([]);
   const [showWarning, setShowWarning] = useState(false);
+  const [test, setTest] = useState<TestSummary>(selectedTest);
 
   const allChecked = checkedItems.length === checklist.length;
 
@@ -27,13 +30,25 @@ function TestInstructionsPage() {
     setShowWarning(false);
   };
 
-  const handleStart = () => {
+  useEffect(() => {
+    api
+      .getSelectionData()
+      .then((data) => setTest(data.selectedTest))
+      .catch(() => setTest(selectedTest));
+  }, []);
+
+  const handleStart = async () => {
     if (!allChecked) {
       setShowWarning(true);
       return;
     }
 
-    navigate("/practice-tests/live");
+    try {
+      const attempt = await api.startAttempt();
+      navigate(`/practice-tests/live?attemptId=${attempt.id}`);
+    } catch {
+      navigate("/practice-tests/live");
+    }
   };
 
   return (
@@ -42,7 +57,7 @@ function TestInstructionsPage() {
         <section className="overflow-hidden rounded-lg border border-practice-line bg-white shadow-dashboard">
           <div className="p-6 sm:p-8">
             <h1 className="text-3xl font-extrabold text-practice-ink">
-              {selectedTest.title}
+              {test.title}
             </h1>
             <div className="mb-6 mt-3 h-1.5 w-24 rounded-full bg-practice-amberDark" />
 
@@ -51,28 +66,28 @@ function TestInstructionsPage() {
                 <p className="text-xs font-extrabold uppercase tracking-wider text-practice-subdued">
                   Subject
                 </p>
-                <p className="font-extrabold text-practice-ink">{selectedTest.subject}</p>
+                <p className="font-extrabold text-practice-ink">{test.subject}</p>
               </div>
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-wider text-practice-subdued">
                   Topic
                 </p>
-                <p className="font-extrabold text-practice-ink">{selectedTest.topic}</p>
+                <p className="font-extrabold text-practice-ink">{test.topic}</p>
               </div>
               <div>
                 <p className="text-xs font-extrabold uppercase tracking-wider text-practice-subdued">
                   Subtopic
                 </p>
-                <p className="font-extrabold text-practice-ink">{selectedTest.subtopic}</p>
+                <p className="font-extrabold text-practice-ink">{test.subtopic}</p>
               </div>
             </div>
           </div>
 
           <div className="grid gap-4 px-6 pb-8 sm:px-8 md:grid-cols-4">
-            <MetricCard label="Questions" value={`${selectedTest.questions}`} icon="Q" />
-            <MetricCard label="Duration" value={`${selectedTest.duration} Mins`} icon="T" />
-            <MetricCard label="Total Marks" value={`${selectedTest.totalMarks}`} icon="M" />
-            <MetricCard label="Difficulty" value={selectedTest.difficulty} icon="D" />
+            <MetricCard label="Questions" value={`${test.questions}`} icon="Q" />
+            <MetricCard label="Duration" value={`${test.duration} Mins`} icon="T" />
+            <MetricCard label="Total Marks" value={`${test.totalMarks}`} icon="M" />
+            <MetricCard label="Difficulty" value={test.difficulty} icon="D" />
           </div>
 
           <div className="border-t border-practice-line px-6 py-8 sm:px-8">
@@ -136,19 +151,19 @@ function TestInstructionsPage() {
             <div className="space-y-4 text-sm">
               <div className="flex justify-between border-b border-practice-line pb-3">
                 <span className="text-practice-subdued">Estimated Time</span>
-                <span className="font-bold">{selectedTest.duration} mins</span>
+                <span className="font-bold">{test.duration} mins</span>
               </div>
               <div className="flex justify-between border-b border-practice-line pb-3">
                 <span className="text-practice-subdued">Passing Score</span>
-                <span className="font-bold">{selectedTest.passingScore}</span>
+                <span className="font-bold">{test.passingScore}</span>
               </div>
               <div className="flex justify-between border-b border-practice-line pb-3">
                 <span className="text-practice-subdued">Attempts Allowed</span>
-                <span className="font-bold">{selectedTest.attemptsAllowed}</span>
+                <span className="font-bold">{test.attemptsAllowed}</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-practice-subdued">Last Best Score</span>
-                <span className="font-bold text-practice-amberDark">{selectedTest.bestScore}</span>
+                <span className="font-bold text-practice-amberDark">{test.bestScore}</span>
               </div>
             </div>
             <div className="mt-8 rounded-lg border border-practice-ink/10 bg-practice-ink/5 p-4 text-sm text-practice-ink">

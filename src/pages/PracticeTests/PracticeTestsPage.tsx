@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AppLayout from "../../components/layout/AppLayout";
 import PracticeFilterBar from "../../components/practiceTests/PracticeFilterBar";
 import PracticeTabs from "../../components/practiceTests/PracticeTabs";
@@ -7,6 +7,7 @@ import RecommendedSection from "../../components/practiceTests/RecommendedSectio
 import StudyBuddyButton from "../../components/practiceTests/StudyBuddyButton";
 import WeakAreasSection from "../../components/practiceTests/WeakAreasSection";
 import { practiceTests } from "../../data/practiceTests";
+import { api } from "../../services/api";
 import type { PracticeTestCardData } from "../../types/practiceTest";
 
 type SelectableDifficulty = PracticeTestCardData["difficulty"] | "All";
@@ -18,23 +19,31 @@ function PracticeTestsPage() {
   const [subject, setSubject] = useState("All");
   const [difficulty, setDifficulty] = useState<SelectableDifficulty>("All");
   const [status, setStatus] = useState<SelectableStatus>("All");
+  const [tests, setTests] = useState<PracticeTestCardData[]>(practiceTests);
+
+  useEffect(() => {
+    api
+      .getPracticeTests()
+      .then((response) => setTests(response.tests))
+      .catch(() => setTests(practiceTests));
+  }, []);
 
   const subjects = useMemo(
     () =>
       Array.from(
         new Set(
-          practiceTests
+          tests
             .filter((test) => !test.isPremium)
             .map((test) => test.category),
         ),
       ),
-    [],
+    [tests],
   );
 
   const filteredTests = useMemo(() => {
     const normalizedSearch = searchTerm.trim().toLowerCase();
 
-    return practiceTests.filter((test) => {
+    return tests.filter((test) => {
       const matchesSearch =
         normalizedSearch.length === 0 ||
         test.title.toLowerCase().includes(normalizedSearch);
@@ -48,7 +57,7 @@ function PracticeTestsPage() {
 
       return matchesSearch && matchesSubject && matchesDifficulty && matchesStatus;
     });
-  }, [difficulty, searchTerm, status, subject]);
+  }, [difficulty, searchTerm, status, subject, tests]);
 
   return (
     <AppLayout>

@@ -1,10 +1,35 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import MetricCard from "../../components/testFlow/MetricCard";
 import PracticeShell from "../../components/testFlow/PracticeShell";
 import StatusBadge from "../../components/testFlow/StatusBadge";
 import { answerReview, resultBreakdown, selectedTest } from "../../data/testFlow";
+import { api, type AttemptResultResponse } from "../../services/api";
+import { useSearchParams } from "react-router-dom";
 
 function ResultsPage() {
+  const [searchParams] = useSearchParams();
+  const attemptId = searchParams.get("attemptId") ?? "demo-attempt";
+  const [result, setResult] = useState<AttemptResultResponse>({
+    attemptId,
+    title: selectedTest.title,
+    overallScore: 78,
+    correct: 24,
+    incorrect: 4,
+    skipped: 2,
+    timeTaken: "38:15",
+    percentile: "92nd",
+    breakdown: resultBreakdown,
+    answerReview,
+  });
+
+  useEffect(() => {
+    api
+      .getAttemptResult(attemptId)
+      .then(setResult)
+      .catch(() => undefined);
+  }, [attemptId]);
+
   return (
     <PracticeShell title="Performance Dashboard" compact>
       <main className="mx-auto max-w-[1280px]">
@@ -14,7 +39,7 @@ function ResultsPage() {
               Practice Tests &gt; Analytics
             </nav>
             <h1 className="text-3xl font-extrabold text-practice-ink">
-              Performance Analysis: {selectedTest.title}
+              Performance Analysis: {result.title}
             </h1>
             <p className="mt-2 max-w-2xl text-lg text-practice-subdued">
               Excellent effort. Your understanding of prime concepts is above average,
@@ -43,7 +68,9 @@ function ResultsPage() {
               }}
             >
               <div className="flex h-28 w-28 flex-col items-center justify-center rounded-full bg-white">
-                <span className="text-3xl font-extrabold text-practice-ink">78%</span>
+                <span className="text-3xl font-extrabold text-practice-ink">
+                  {result.overallScore}%
+                </span>
                 <span className="text-sm text-practice-subdued">Overall</span>
               </div>
             </div>
@@ -59,21 +86,21 @@ function ResultsPage() {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span>Correct</span>
-                <span className="font-extrabold">24</span>
+                <span className="font-extrabold">{result.correct}</span>
               </div>
               <div className="flex justify-between">
                 <span>Incorrect</span>
-                <span className="font-extrabold">4</span>
+                <span className="font-extrabold">{result.incorrect}</span>
               </div>
               <div className="flex justify-between">
                 <span>Skipped</span>
-                <span className="font-extrabold">2</span>
+                <span className="font-extrabold">{result.skipped}</span>
               </div>
             </div>
           </div>
 
-          <MetricCard label="Time Taken" value="38:15" icon="T" />
-          <MetricCard label="Global Percentile" value="92nd" icon="P" dark />
+          <MetricCard label="Time Taken" value={result.timeTaken} icon="T" />
+          <MetricCard label="Global Percentile" value={result.percentile} icon="P" dark />
         </div>
 
         <div className="mb-8 grid grid-cols-1 gap-6 lg:grid-cols-3">
@@ -82,7 +109,7 @@ function ResultsPage() {
               Topic-wise Performance
             </h2>
             <div className="space-y-8">
-              {resultBreakdown.map((item) => (
+              {result.breakdown.map((item) => (
                 <div key={item.label}>
                   <div className="mb-2 flex justify-between text-sm font-bold">
                     <span>{item.label}</span>
@@ -160,7 +187,7 @@ function ResultsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-practice-line">
-                {answerReview.map((row) => (
+                {result.answerReview.map((row) => (
                   <tr key={row.id} className="transition hover:bg-practice-muted/60">
                     <td className="px-6 py-5 font-extrabold">{row.id}</td>
                     <td className="px-6 py-5">{row.preview}</td>
