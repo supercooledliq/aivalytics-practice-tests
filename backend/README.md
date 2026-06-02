@@ -11,50 +11,20 @@ Python + FastAPI backend for the React practice test portal.
 - Uvicorn
 - Docker
 
-## Run With Docker
-
-From the project root:
-
-```bash
-docker-compose up --build
-```
-
-Frontend:
-
-```text
-http://localhost:5173
-```
-
-Backend:
-
-```text
-http://localhost:8000
-```
-
-API docs:
-
-```text
-http://localhost:8000/docs
-```
-
-Health check:
-
-```text
-http://localhost:8000/api/health
-```
-
-## Supabase Setup
-
-1. Create a Supabase project.
-2. Run `backend/supabase/schema.sql` in the Supabase SQL editor.
-3. Run `backend/supabase/seed.sql` for starter data.
-4. Create `backend/.env` from `.env.example`.
-5. Add:
-
-```env
-SUPABASE_URL=your-project-url
+Create backend/.env with the Supabase credentials:
+APP_ENV=development
+FRONTEND_ORIGIN=http://localhost:5173
+SUPABASE_URL=your-supabase-url
 SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
-```
+
+Run Docker from the project root:
+docker compose up --build
+
+Open:
+Frontend: http://localhost:5173
+Backend:  http://localhost:8000
+Docs:     http://localhost:8000/docs
+Health check: http://localhost:8000/api/health
 
 If Supabase credentials are not set, the backend uses in-memory/mock data so frontend work can continue.
 
