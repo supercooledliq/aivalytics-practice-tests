@@ -29,3 +29,7 @@ __pycache__/
 *.py[cod]
 .venv/
 backend/.env
+
+#markdown
+*.md
+!README.md
