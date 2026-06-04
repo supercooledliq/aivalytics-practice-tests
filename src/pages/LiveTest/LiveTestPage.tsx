@@ -19,11 +19,11 @@ function LiveTestPage() {
   const attemptId = searchParams.get("attemptId");
   const [remainingSeconds, setRemainingSeconds] = useState(44 * 60 + 52);
   const [selectedOption, setSelectedOption] = useState(liveQuestion.answerId ?? "");
-  const [currentQuestion, setCurrentQuestion] = useState(liveQuestion.id);
-  const [marked, setMarked] = useState([15, 22]);
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [marked, setMarked] = useState<number[]>([]);
   const [question, setQuestion] = useState<LiveQuestion>(liveQuestion);
   const [totalQuestions, setTotalQuestions] = useState(selectedTest.questions);
-  const [answeredCount, setAnsweredCount] = useState(11 + (liveQuestion.answerId ? 1 : 0));
+  const [answeredCount, setAnsweredCount] = useState(0);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -39,7 +39,7 @@ function LiveTestPage() {
     }
 
     api
-      .getAttemptQuestions(attemptId)
+      .getAttemptQuestions(attemptId, currentQuestion)
       .then((response) => {
         setQuestion(response.question);
         setCurrentQuestion(response.question.id);
@@ -49,7 +49,7 @@ function LiveTestPage() {
         setAnsweredCount(response.attempt.answeredCount);
       })
       .catch(() => undefined);
-  }, [attemptId]);
+  }, [attemptId, currentQuestion]);
 
   const questionButtons = useMemo(
     () =>
@@ -89,10 +89,14 @@ function LiveTestPage() {
     setAnsweredCount((current) => Math.max(current, currentQuestion));
 
     if (currentQuestion >= totalQuestions) {
+      if (attemptId) {
+        await api.submitAttempt(attemptId).catch(() => undefined);
+      }
       navigate(attemptId ? `/practice-tests/results?attemptId=${attemptId}` : "/practice-tests/results");
       return;
     }
 
+    setSelectedOption("");
     setCurrentQuestion((current) => current + 1);
   };
 
@@ -179,7 +183,10 @@ function LiveTestPage() {
               <button
                 key={item.number}
                 type="button"
-                onClick={() => setCurrentQuestion(item.number)}
+                onClick={() => {
+                  setSelectedOption("");
+                  setCurrentQuestion(item.number);
+                }}
                 className={[
                   "flex aspect-square items-center justify-center rounded-lg text-sm transition hover:scale-105 active:scale-95",
                   questionButtonClass(item.status),

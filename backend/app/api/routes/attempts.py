@@ -20,8 +20,11 @@ def start_attempt(payload: StartAttemptRequest) -> TestAttempt:
 
 
 @router.get("/{attempt_id}/questions", response_model=AttemptQuestionsResponse)
-def get_attempt_questions(attempt_id: str) -> AttemptQuestionsResponse:
-    return attempt_service.get_questions(attempt_id)
+def get_attempt_questions(
+    attempt_id: str,
+    question_number: int | None = None,
+) -> AttemptQuestionsResponse:
+    return attempt_service.get_questions(attempt_id, question_number)
 
 
 @router.patch("/{attempt_id}/answers/{question_id}", response_model=SaveAnswerResponse)

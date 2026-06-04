@@ -95,8 +95,12 @@ export const api = {
         subtopicId: "prime-factors",
       }),
     }),
-  getAttemptQuestions: (attemptId: string) =>
-    request<AttemptQuestionsResponse>(`/test-attempts/${attemptId}/questions`),
+  getAttemptQuestions: (attemptId: string, questionNumber?: number) =>
+    request<AttemptQuestionsResponse>(
+      `/test-attempts/${attemptId}/questions${
+        questionNumber ? `?question_number=${questionNumber}` : ""
+      }`,
+    ),
   saveAnswer: (attemptId: string, questionId: number, optionId: string | null, status = "answered") =>
     request(`/test-attempts/${attemptId}/answers/${questionId}`, {
       method: "PATCH",
